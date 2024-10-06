@@ -1,11 +1,39 @@
-# we only need to import index.html file and we can use all subfiles and import them within index.html file and use them on our website
+<!-- # we only need to import index.html file and we can use all subfiles and import them within index.html file and use them on our website -->
 
 {% extends 'base.html' %}
 
 {% block head %} 
-
+<title>TODO TASK</title>
 {% endblock %}
 
 {% block body %}
-<h1>Hello Again ppls of earth</h1>
+<div class="content">
+  <h1 style="text-align: center;">Task Master</h1>
+  {% if tasks|length < 1 %}
+  <h4 style="text-align: center;">There is no tasks add one :3 </h4>
+  {% else %}
+  <table>
+    <tr>
+      <th>Task</th>
+      <th>Added</th>
+      <th>Actions</th>
+    </tr>
+    {% for task in tasks %}
+        <tr>
+          <td>{{ task.content }}</td>
+          <td>{{ task.date_created.date() }}</td>
+          <td>
+            <a href="/delete/{{task.id}}">Delete</a><br>
+
+            <a href="/update/{{task.id}}">Update</a>
+          </td>
+        </tr>
+      {% endfor %}
+  </table>
+  {% endif %}
+  <form action="/" method="POST">
+    <input type="text" name="content" id="content" >
+    <input type="submit" value="Add Task" >
+  </form>
+</div>
 {% endblock %}

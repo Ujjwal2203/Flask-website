@@ -1,0 +1,18 @@
+<!-- # we only need to import index.html file and we can use all subfiles and import them within index.html file and use them on our website -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>TODO TASK</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  <h1 style="text-align: center;">Update Task</h1>
+
+  <form action="/update/{{task.id}}" method="POST">
+    <input type="text" name="content" id="content" value="{{task.content}}" >
+    <input type="submit" value="Update Task" >
+  </form>
+</div>
+{% endblock %}
